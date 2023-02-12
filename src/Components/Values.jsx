@@ -6,11 +6,11 @@ import values from "../assets/values.svg";
 
 export default function Values() {
   return (
-    <Box sx={{ flexGrow: 1, width: "100vw" }}>
+    <Box sx={{ flexGrow: 1, width: "100vw",bgcolor:"ivory",pb:{xs:3,lg:0} }}>
       <Grid
         container
         
-       sx={{mt:3,p:{xs:1,md:3}}}
+       sx={{mt:2,p:{xs:1,md:3}}}
       >
         {[
           { title: "Determination", image: { values } },
@@ -20,17 +20,17 @@ export default function Values() {
         ].map((name, index) => (
           <Grid
             key={index}
-            xs={12}
-            sm={6}
+            xs={3}
+            sm={3}
             md={3}
             display="flex"
             justifyContent="center"
             alignItems="center"
-            minHeight={180}
-            sx={{display:"block",alignItems:"center"}}
+            
+            sx={{display:"block",alignItems:"center",}}
           >
-            <img src={values} alt={name.title} className="img-fluid object-center m-auto w-[40%] md:w-[70%] bg-white rounded-lg p-4"/>
-            <Typography  sx={{color:"#fafafa",textAlign:"center",my:{xs:0,md:2}}}>
+            <img src={values} alt={name.title} className="img-fluid object-center m-auto w-[65%] h-[100%] md:h-[70%] md:w-[70%]  rounded-3xl px-2 "/>
+            <Typography  sx={{fontSize:{xs:9,md:15,lg:30},textAlign:"center",}}>
               {name.title}
             </Typography>
           </Grid>

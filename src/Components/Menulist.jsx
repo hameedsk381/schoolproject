@@ -3,6 +3,7 @@ import Card from '@mui/joy/Card';
 import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import { Button } from '@mui/joy';
+import { Link } from 'react-router-dom';
 
 
 export default function Menulist({menu,bg}) {
@@ -25,8 +26,8 @@ export default function Menulist({menu,bg}) {
         }}
       />
       <CardContent sx={{ justifyContent: 'center',textAlign:"center" }}>
-        <Button  variant='text' sx={{color:"white",mb:4,textAlign:"left",borderRadius:'0px',py:2,fontSize:"20px" ,'&:hover': { boxShadow: 'md', borderBlock:"1px solid white",mx:3,transition: "transform .2s", }}}>
-          {menu}
+        <Button  variant='text'  sx={{color:"white",mb:4,textAlign:"left",borderRadius:'0px',py:2,fontSize:"20px" ,'&:hover': { boxShadow: 'md', borderBlock:"1px solid white",mx:3,transition: "transform .2s", }}}>
+         <Link to="/gallery">{menu}</Link>
         </Button>
       
        

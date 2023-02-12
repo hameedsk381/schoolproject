@@ -1,168 +1,39 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-
+import principal from '../assets/principal.JPG'
 
 import Typography from "@mui/material/Typography";
-import { Avatar, Stack } from "@mui/material";
+import { Avatar, Grid, Paper, Stack } from "@mui/material";
+import { FormatQuote, FormatQuoteOutlined } from "@mui/icons-material";
 
 export default function Message({ name, message, role, caption }) {
   return (
-    <Box
-      sx={{
-        width: "100%",
-        px:3,pt:3,py:1,
-        backgroundColor: "ivory",
-        borderRadius: "15px",
-      }}
-    >
-      <Typography
-        level="h2"
-        fontSize="md"
-        sx={{
-          mb: 0.5,
-          fontWeight: "bold",
-          color: "#1769aa",
-          fontSize: { xs: "15px", md: "25px" },
-          textAlign: "center",mt:2
-        }}
-      >
-        Message from the {role}
-      </Typography>
-      <Typography
-        level="body2"
-        variant="h6"
-        sx={{
-          fontWeight: "bold",
-          textAlign: "center",
-          mb: 1,
-          fontSize: { xs: "20px", md: "25px" },
-        }}
-      >
-        {name}
-      </Typography>
+    
+     <Paper sx={{py:4,height:"100%",bgcolor:"ivory"}} elevation={3}>
+    
+    
+     <Grid container   >
+    <Grid item xs={12} md={3} >
+  <Paper elevation={5} sx={{width:{xs:"90%",lg:"60%"},height:"100%",mb:3,margin:"auto",p:1}} >
+  <Avatar variant="square" src={principal} alt="principal" sx={{width:"100%",height:"100%"}}/>
+  </Paper>
+    </Grid>
+    <Grid item xs={12} md={9} sx={{p:2}}>
+    
+    <Typography   sx={{py:2,letterSpacing:2,fontSize:{xs:20,md:25,lg:26}}}>Director's <Typography variant="h5" color="Highlight" sx={{display:"inline-flex",fontSize:{xs:20,md:25,lg:26}}}>Message</Typography> </Typography>
+    <FormatQuote  sx={{fontSize:{xs:20,md:40}}} color="primary"/>
+   <Typography component="p" py={2} sx={{ml:2,fontFamily:"serif",fontSize:{xs:12,md:15,lg:18}}}>
+   {message}
+   </Typography>
+   <Button variant="outlined" size="small" sx={{alignItems:"center",margin:"auto",ml:2}}> Read More</Button>
+   
 
-      <Stack direction="row" sx={{ display: { xs: "none", md: "flex" } }}>
-        
 
-        <Box sx={{height:{md:"70vh"}, display: "block", p: 1 }}>
-        <Avatar
-          src={require("../assets/principal.JPG")}
-          loading="lazy"
-          alt=""
-          sx={{
-            width: { xs: 100, md: 180 },
-            height: { xs: 100, md: 180 },
-            margin: "auto",
-          }}
-        />
-          <Typography
-            fontSize="lg"
-            fontWeight="lg"
-            sx={{
-              textAlign: "center",
-              fontFamily: "Cinzel",
-              py: 1,my:2,
-              fontSize: { xs: "10px", md: "25px" },
-              color: "#1769aa",
-            }}
-          >
-            {caption}
-          </Typography>
-          <Typography
-            fontSize="lg"
-            fontWeight="lg"
-            sx={{
-              textAlign: "justify",alignContent:"center",
-              fontFamily: "sans-serif",
-              fontSize: { xs: "10px", md: "medium" },
-              pb: 3,my:3,
-              color: "#1769aa",
-            }}
-          >
-            {message}
-            <br />
-           
-          </Typography>
-          <Button
-      variant="outlined"
-      size="medium"
-      color="primary"
-      aria-label="Explore Bahamas Islands"
-      sx={{
-        fontWeight: 200,
-        margin: "auto",
-        p: 0.5,ml:15,
-        
-        
-        fontSize: "13px",
-      }}
-    >
-      Read more
-    </Button>
-        </Box>
-        
-      </Stack>
-      
-      <Stack direction="row" sx={{ display: { xs: "block", md: "none" } }}>
-       
+    </Grid>
 
-        <Box sx={{height:{md:"70vh"}, display: "block", px:3,py:1 }}>
-        <Avatar
-        src={require("../assets/principal.JPG")}
-        loading="lazy"
-        alt=""
-        sx={{
-          width: { xs: 100, md: 180 },
-          height: { xs: 100, md: 180 },
-          margin: "auto",
-        }}
-      />
-          <Typography
-            fontSize="lg"
-            fontWeight="lg"
-            sx={{
-              textAlign: "center",
-              fontFamily: "Cinzel",
-              py: 2,
-              fontSize: { xs: "10px", md: "15px" },
-              color: "#1769aa",
-            }}
-          >
-            {caption}
-          </Typography>
-          <Typography
-            fontSize="lg"
-            fontWeight="lg"
-            sx={{
-              textAlign: "justify",
-              fontFamily: "sans-serif",
-              fontSize: { xs: "10px", md: "medium" },
-              pb: 3,
-              color: "#1769aa",
-            }}
-          >
-            {message}
-            <br />
-            <Button
-              variant="outlined"
-              size="medium"
-              color="primary"
-              aria-label="Explore Bahamas Islands"
-              sx={{
-                fontWeight: 200,
-                margin: "auto",
-                p: 0.5,
-                color: "#1769aa",
-                my: 2,ml:6,
-                fontSize: "13px",
-              }}
-            >
-              Read more
-            </Button>
-          </Typography>
-        </Box>
-      </Stack>
-    </Box>
+     
+     </Grid>
+     </Paper>
   );
 }

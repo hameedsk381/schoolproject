@@ -1,71 +1,84 @@
-import { Avatar } from '@mui/material';
+import { Alert, Avatar, Box, Breadcrumbs, Button, Container, Grid, Paper, Skeleton, Stack, Typography } from '@mui/material';
+import { grey } from '@mui/material/colors';
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers } from '../actions/userActions';
+import { Link } from 'react-router-dom';
+import { getAllUsers, getUser } from '../actions/userActions';
+import Teachercards from './Teachercards';
 
 const Faculty = () => {
-    const userstate = useSelector((state) => state.getAllUsersReducer);
-    const dispatch = useDispatch()
-    const { users } = userstate;
-    console.log(userstate);
-    dispatch(getAllUsers())
- axios.get("")
+    const [user,setUser] = useState()
+    const dispatch = useDispatch();
+    const loginstate = useSelector((state) => state.getAllUsersReducer);
+    const { loading, error ,users} = loginstate;
+    console.log(loginstate);
+    useEffect(() => {
+     
+      dispatch(getAllUsers())
+    }, []);
     
   return (
-  <>
-  <div className="flex flex-col justify-center items-center">
+    <Container>
+    <Box component="div" role="presentation" sx={{my:2}}>
+<Typography variant="h6">Faculty</Typography>
+<Breadcrumbs aria-label="breadcrumb" >
+  <Link underline="hover" color="inherit" href="/">
+  Home
+  </Link>
+ 
+  <Typography sx={{ color: "#757ce8" }}>Faculty</Typography>
+</Breadcrumbs>
+</Box>
+  <Grid container spacing={3} sx={{p:3}}>
+  {loading && (<Skeleton variant="rectangular" width={210} height={60} />)}
+  {error && (<Alert severity="error">This is an error alert — check it out!</Alert>)}
+  
+  {users.map((teacher,i)=>(
+   <Grid item xs={12} lg={3} sx={{p:2}} key={i}>
 
-<div className="container mx-auto text-center pt-24">
-    <div className="items-center justify-center flex">
-        <div className="text-center">
-            <div className="flex flex-col justify-center items-center">
-                <div className="w-16">
-                    <img className="block rounded-full m-auto shadow-md" alt="Duc Sun"
-                        src="https://randomuser.me/api/portraits/men/12.jpg" />
-                </div>
-                <div className="text-gray-600">
-                    <p>Duc Sun</p>
-                    <p>ceo</p>
-                </div>
-            </div>
-            <ul className="flex flex-row mt-10 justify-center">
-                <div className="-mt-10 border-l-2 absolute h-10 border-gray-400"></div>
-               
-                {users.map(item=>(<li key={item} className="relative p-6">
-                <div className="border-t-2 absolute h-8 border-gray-400 top-0"
-                style={{left: "0%", right: "0px"}}></div>
-                <div className="relative flex justify-center">
-                    <div className="-mt-6 border-l-2 absolute h-6 border-gray-400 top-0"></div>
-                    <div className="text-center">
-                        <div className="flex flex-col justify-center items-center">
-                            <div className="w-16">
-                            <Avatar
-  alt={item.name}
-  src={`data:images/jpeg;base64,${btoa(
-    String.fromCharCode(...new Uint8Array((item.image.data.data)))
-  )}`}
-  sx={{ width: 56, height: 56 }}
-/>
-                            
-                            </div>
-                            <div className="text-gray-600">
-                                <p>{item.name}</p>
-                                <p>{item.department}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>))}
-                
-            </ul>
-        </div>
-    </div>
-</div>
-<a className="text-md underline text-gray-500 hover:text-gray-700 cursor-pointer bottom-0"
-    href="https://codesandbox.io/s/github/ravisankarchinnam/tailwindcss-flow-chart">React.js version</a>
-</div>
-  </>
+   <Paper sx={{pb:4}} elevation={3} >
+      <Box
+        sx={{
+          width: "100%",
+          height: {xs:100,lg:150},
+       
+          opacity: 0.8,
+          background: "linear-gradient(to right, #2196f3 ,#2196f3, #2196f3)",
+        }}
+      />
+      <Avatar
+        src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1727&q=60"
+        sx={{
+          my: {xs:-6,lg:-10},
+     margin:"auto",
+         
+          width: {lg:120,xs:100},
+          height: {lg:120,xs:100},
+          border: "5px solid white",
+        }}
+      />
+      <Stack
+        sx={{
+          mt: {xs:7,lg:11},
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Typography sx={{fontWeight:"bold",fontSize:{xs:17,lg:25,}}}> {teacher.name}</Typography>
+        <Typography sx={{fontWeight:"bold",fontSize:{xs:14,lg:18}}} color={grey[600]}>
+         {teacher.department}  Department
+        </Typography>
+        <Button variant='contained' size='small' color='info'  sx={{my:2}} >View profile</Button>
+      </Stack>
+     
+     
+    </Paper>
+   </Grid>
+  ))}
+  </Grid>
+    </Container>
 
   )
 }

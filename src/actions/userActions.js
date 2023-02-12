@@ -32,6 +32,8 @@ export const getAllUsers =()=>async(dispatch)=>{
         dispatch({ type: "GET_ALL_USERS_ERROR", payload: err.response.data.message });
     }
 }
+
+
 export const logoutUser =()=>(dispatch)=>{
     localStorage.removeItem("currentUser")
     window.location.href='/login'

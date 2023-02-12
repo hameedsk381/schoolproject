@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../actions/userActions';
 
 
-const menu = [{name:"Home",route:"/"},{name:"My profile",route:"/profile"},{name:"Academics",route:"/academics"},{name:"Admissions",route:"/admissions"},{name:"Clubs",route:"/clubs"},{name:"Faculty",route:"users"},{name:"Contact",route:"contact"},]
+const menu = [{name:"Home",route:"/"},{name:"My profile",route:"/profile"},{name:"Academics",route:"/academics"},{name:"Admissions",route:"/admissions"},{name:"Clubs",route:"/clubs"},{name:"Faculty",route:"faculty"},{name:"Contact",route:"contact"},]
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 
@@ -92,7 +92,7 @@ function Appbar() {
             >
               {menu.map((item,i) => (
                 <MenuItem key={i} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" fontFamily="cinzel">{item.name}</Typography>
+                  <Link style={{textAlign:"center",color:"Highlight",fontFamily:"-moz-initial"}} to={`${item.route}`}>{item.name}</Link>
                 </MenuItem>
               ))}
             </Menu>
